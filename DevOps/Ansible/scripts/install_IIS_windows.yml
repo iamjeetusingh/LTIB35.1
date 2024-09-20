@@ -1,0 +1,21 @@
+- name: Install IIS Web Server
+  hosts: windows_servers
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Install IIS Role
+      win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Install ASP.NET 4.5
+      win_feature:
+        name: Web-Asp-Net45
+        state: present
+
+    - name: Start IIS Service
+      win_service:
+        name: W3SVC
+        state: started
+

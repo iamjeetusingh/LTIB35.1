@@ -1,0 +1,10 @@
+---
+- name: Manage users
+  hosts: server 
+  become: yes
+  tasks:
+    - name: Create user
+      ansible.builtin.user:
+        name: malkom
+        password: $1$cqwvuVtX$6kTCPtlzMXExirchK.YSm/
+        state: present

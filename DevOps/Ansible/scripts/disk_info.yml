@@ -1,0 +1,14 @@
+---
+- name: Get disk information from Linux machines
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Get /boot disk information
+      command: "df -h /boot"
+      register: boot_info
+
+    - name: Print disk information
+      debug:
+        var: boot_info.stdout_lines
+

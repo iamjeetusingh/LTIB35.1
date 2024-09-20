@@ -1,0 +1,11 @@
+---
+- name: List installed packages on CentOS 7 and older
+  hosts: server
+  gather_facts: yes
+  tasks:
+    - name: Get installed package list
+      ansible.builtin.shell: yum list installed | awk '{print $1}'
+      register: installed_packages
+    - name: Display installed package list
+      debug:
+        msg: "{{ installed_packages.stdout_lines }}"

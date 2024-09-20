@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install apache2 package & libapache2-mod-php
+    apt:
+            name: 
+              - apache2
+              - libapache2-mod-php
+            state: latest
+            update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install HTTPD & PHP  packages on CentOS
+    yum:
+            name: 
+              - httpd
+              - php
+            state: latest
+    when: ansible_distribution == "CentOS"
